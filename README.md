@@ -2,7 +2,7 @@
 
 Product recommendation system for Instacart based on collaborative filtering.
 
-### Project Objective
+## Project Objective
 
 The goal is to recommend products that may interest a user based on their purchase history and the purchasing patterns of similar users.
 
@@ -78,7 +78,10 @@ The result is a `data/processed/prior_merged.csv` file that contains all the inf
 python scripts/dashboard.py
 ```
 
-This script generates an interactive Plotly dashboard (`data/processed/plots/dashboard.html`) with several visualizations: global KPIs, top products, heatmap of purchases by department and day of the week, various distributions.
+This script generates an interactive Plotly dashboard (`data/processed/plots/dashboard.html`) with several visualizations: global KPIs, top reordered products, reorder rate by department, purchase patterns by hour and day of week.
+
+![Dashboard Overview](docs/images/dashboard_overview.png)
+![Reorder Rate Heatmap](docs/images/dashboard_heatmap.png)
 
 ## Sparse Matrix Construction
 
@@ -231,6 +234,15 @@ curl "http://localhost:8000/models"
 ```
 
 ## Streamlit Interface
+
+The interactive interface lets you explore recommendations for any user, compare models, and verify consistency between purchase history and recommendations.
+
+![Streamlit Interface — purchase history and ALS recommendations for user 1](docs/images/streamlit_interface.png)
+
+The consistency section compares the departments in the user's history with those of the recommended products, allowing visual verification that the model makes coherent suggestions.
+
+![Department consistency — history vs recommendations](docs/images/streamlit_comparison.png)
+
 ```bash
 streamlit run src/ui/app.py
 ```
@@ -258,13 +270,19 @@ The interface is accessible at `http://localhost:8501`. The API must be running 
 - Allows visual verification that the model recommends consistent products
 
 ## Docker Deployment
+
+Docker allows you to run the entire system (API + Streamlit interface) in isolated containers, without worrying about local dependencies or environment configuration. Everything is pre-configured and ready to run.
+
+**Prerequisites**: [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
 ```bash
 docker-compose up --build
 ```
 
-This launches two containers:
-- **API**: `http://localhost:8000`
-- **Streamlit**: `http://localhost:8501`
+This launches two containers simultaneously:
+- **API**: `http://localhost:8000` — REST endpoints for recommendations
+- **Streamlit**: `http://localhost:8501` — interactive interface
+
+The API must start before Streamlit can display recommendations (`depends_on` is already configured in `docker-compose.yml`).
 
 ## Algorithms
 
@@ -296,7 +314,7 @@ Main hyperparameters:
 
 *Implementation: from scratch (NumPy/SciPy)*
 
-Linear autoencoder without hidden layer. Despite its apparent simplicity, it performs very well thanks to L2 regularization on weights. The solution has a closed form:
+Linear autoencoder without hidden layer. Despite its apparent simplicity, it performs very well thanks to L2 regularization on weights. The solution has a  mathematical formula that gives the exact solution in one step without iterative training:
 ```
 B = (X^T X + λI)^(-1)
 ```
