@@ -180,7 +180,7 @@ Specifically, for each user in the test set:
 | EASE | 14.6% | 0.0229 |
 | BPR | 14.6% | 0.0224 |
 
-ALS achieves the best performance. EASE is remarkable given its simplicity - no iterative training, just a matrix inversion. This result aligns with the conclusions of Dacrema et al. (2019): simple well-tuned methods often compete with more complex approaches.
+ALS achieves the best performance. EASE is remarkable given its simplicity, no iterative training just a matrix inversion. This result aligns with the conclusions of Dacrema et al. (2019): simple well-tuned methods often compete with more complex approaches.
 
 ## REST API
 
@@ -203,7 +203,7 @@ uvicorn src.api.main:app --reload --host 0.0.0.0 --port 8000
 
 - `user_id` (path): User ID (required)
 - `n` (query): Number of recommendations to return (default: 10)
-- `model_name` (query): Model to use — `als`, `bpr` or `ease` (default: als)
+- `model_name` (query): Model to use : `als`, `bpr` or `ease` (default: als)
 
 ### Examples
 ```bash
@@ -279,8 +279,8 @@ docker-compose up --build
 ```
 
 This launches two containers simultaneously:
-- **API**: `http://localhost:8000` — REST endpoints for recommendations
-- **Streamlit**: `http://localhost:8501` — interactive interface
+- **API**: `http://localhost:8000` : REST endpoints for recommendations
+- **Streamlit**: `http://localhost:8501` : interactive interface
 
 The API must start before Streamlit can display recommendations (`depends_on` is already configured in `docker-compose.yml`).
 
@@ -391,10 +391,10 @@ instacart-recsys/
 
 ## References
 
-- Hu, Koren, Volinsky (2008) — *Collaborative Filtering for Implicit Feedback Datasets*
-- Rendle et al. (2009) — *BPR: Bayesian Personalized Ranking from Implicit Feedback*
-- Steck (2019) — *Embarrassingly Shallow Autoencoders for Sparse Data*
-- Dacrema et al. (2019) — *Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches*
+- Hu, Koren, Volinsky (2008), *Collaborative Filtering for Implicit Feedback Datasets*
+- Rendle et al. (2009), *BPR: Bayesian Personalized Ranking from Implicit Feedback*
+- Steck (2019), *Embarrassingly Shallow Autoencoders for Sparse Data*
+- Dacrema et al. (2019), *Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches*
 
 ## License
 
