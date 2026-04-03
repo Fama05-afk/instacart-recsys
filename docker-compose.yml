@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/processed/matrix.pkl:/app/data/processed/matrix.pkl
+      - ./data/processed/mappings.pkl:/app/data/processed/mappings.pkl
+    container_name: instacart-api
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    environment:
+      - API_URL=http://api:8000
+    volumes:
+      - ./data:/app/data
+    container_name: instacart-streamlit

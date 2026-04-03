@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+implicit
+scipy
+numpy
+pydantic
+mlflow

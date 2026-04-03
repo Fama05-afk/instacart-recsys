@@ -1,0 +1,47 @@
+# Data directories
+data/raw/
+data/processed/
+
+# Model files
+models/
+
+# MLflow tracking
+mlruns/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Virtual environment
+instacart/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# MLflow
+mlflow.db
+mlflow.db-shm
+mlflow.db-wal

@@ -1,0 +1,15 @@
+numpy
+pandas
+scipy
+implicit
+mlflow
+fastapi
+uvicorn
+streamlit
+scikit-learn
+pydantic
+python-dotenv
+matplotlib
+seaborn
+networkx
+plotly
